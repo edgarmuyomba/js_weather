@@ -14,6 +14,28 @@ async function fetchDetails(city) {
     };
 }
 
+async function fetchToday(city) {
+    let details = await fetchDetails(city);
+    
+    let data = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${details['lat']}&lon=${details['lon']}&appid=${details['appid']}`);
+    let response = await data.json();
+    return {
+        "main": response['weather'][0]['main'],
+        "name": details['name'],
+        "description": capitalize(response['weather'][0]['description']),
+        "temp": kelvinToDegrees(response['main']['temp']),
+        "wind": response['wind']['speed'],
+    }
+}
+
+async function getfiveDays(city) {
+    let details = await fetchDetails(city);
+
+    let data = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${details['lat']}&lon=${details['lon']}&appid=${details['appid']}`);
+    let response = await data.json();
+    return response;
+}
+
 function kelvinToDegrees(value, format = "celsius") {
     if (format === "celsius") {
         return truncate(value - 273.15);
@@ -53,4 +75,19 @@ function showToday(city) {
     displayToday(city);
 }
 
-export { fetchDetails, kelvinToDegrees, capitalize, showDetails, showToday };
+function setIcon(element, main) {
+    const styles = {
+        "Thunderstorm": "thunderstorm",
+        "Drizzle": "drizzle",
+        "Rain": "rain",
+        "Snow": "snow",
+        "Atmosphere": "atmosphere",
+        "Clear": "clear",
+        "Clouds": "clouds",
+
+    };
+
+    element.classList.add(styles[main]);
+}
+
+export { fetchDetails, kelvinToDegrees, capitalize, showDetails, showToday, fetchToday, setIcon, getfiveDays };
