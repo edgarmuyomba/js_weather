@@ -1,4 +1,5 @@
 import "./modules/today.js";
+import "./modules/details.js";
 
 import "../css/today.css";
 import "../css/icons.css";

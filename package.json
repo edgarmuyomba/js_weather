@@ -24,6 +24,7 @@
   "homepage": "https://github.com/edgarmuyomba/js_weather#readme",
   "devDependencies": {
     "css-loader": "^6.8.1",
+    "date-fns": "^2.30.0",
     "style-loader": "^3.3.3",
     "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4",

@@ -14,6 +14,7 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
+    margin-left: 32px;
 }
 
 .main-details > .desc {
@@ -24,4 +25,5 @@
     align-items: end;
     font-size: 200px;
     color: rgba(255, 255, 255, 0.7);
+    padding-right: 32px;
 }

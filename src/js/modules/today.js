@@ -1,33 +1,39 @@
-import { fetchCoords, kelvinToDegrees } from "./utils";
-import { swapScreen } from "./switchDisplay";
+import { fetchDetails, kelvinToDegrees, capitalize } from "./utils";
+import { showDetails } from "./utils";
 
 const today = document.querySelector('.main');
 
-// window.onload = displayToday();
+let currentCity = "kampala";
 
-async function displayToday() {
-    let today = await fetchToday();
+window.onload = displayToday(currentCity);
+
+
+async function displayToday(city) {
+    let today = await fetchToday(city);
     
     const temp = document.querySelector('.main > .temp > .value');
     temp.textContent = `${kelvinToDegrees(today['temp'])}°C`;
 
     const desc = document.querySelector('.main > .desc');
-    desc.textContent = today['description'];
+    desc.textContent = capitalize(today['description']);
+
+    const name = document.querySelector('.main .name');
+    name.textContent = today['name'];
 }
 
-async function fetchToday() {
-    let kampalaCoords = await fetchCoords('kampala');
+async function fetchToday(city) {
+    let details = await fetchDetails(city);
     
-    let data = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${kampalaCoords['lat']}&lon=${kampalaCoords['lon']}&appid=${kampalaCoords['appid']}`);
+    let data = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${details['lat']}&lon=${details['lon']}&appid=${details['appid']}`);
     let response = await data.json();
     return {
         "main": response['weather'][0]['main'],
+        "name": details['name'],
         "description": response['weather'][0]['description'],
         "temp": response['main']['temp'],
     }
 }
 
-today.addEventListener('click', () => swapScreen());
+today.addEventListener('click', () => showDetails(currentCity));
 
-
-// let data = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${kampalaCoords['lat']}&lon=${kampalaCoords['lon']}&appid=${kampalaCoords['appid']}`);
+export { displayToday };

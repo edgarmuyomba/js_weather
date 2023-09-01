@@ -3,6 +3,9 @@
     grid-row: 1 / -1;
     padding: 32px;
     color: white;
+    backdrop-filter: blur(10px);
+    border-left: 1px solid white;
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 .sidebar > .search {
@@ -80,7 +83,7 @@
     grid-template-rows: 1fr 1fr;
     height: 70px;
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 32px;
 }
 
 .sidebar > .day > .icon {
@@ -107,4 +110,9 @@
     grid-row: 1 / 2;
     align-self: end;
     font-weight: 700;
+}
+
+.sidebar > .day > .desc {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
 }
