@@ -1,0 +1,27 @@
+.details > .main-details {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+}
+
+.main-details > .icon {
+    height: 40%;
+    width: 25%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.main-details > .desc {
+    height: 40%;
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    font-size: 200px;
+    color: rgba(255, 255, 255, 0.7);
+}

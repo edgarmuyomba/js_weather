@@ -3,7 +3,7 @@ import { swapScreen } from "./switchDisplay";
 
 const today = document.querySelector('.main');
 
-window.onload = displayToday();
+// window.onload = displayToday();
 
 async function displayToday() {
     let today = await fetchToday();

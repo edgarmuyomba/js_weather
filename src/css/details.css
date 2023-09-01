@@ -1,0 +1,12 @@
+.details > * {
+    border: 1px solid red;
+}
+
+div.details {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: 0.5fr 3fr 1fr;
+    height: 100%;
+    width: 100%;
+    font-family: var(--nunito);
+}

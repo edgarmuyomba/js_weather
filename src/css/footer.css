@@ -1,0 +1,54 @@
+.details > .footer {
+    grid-column: 1 / 2;
+    grid-row: 3 / 4;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: 32px;
+}
+
+.footer > .hour {
+    height: 100%;
+    width: 100px;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s;
+}
+
+.footer > .hour > .hr {
+    width: 80%;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.5);
+    margin: 4px 0;
+}
+
+.footer > .hour > .icon {
+    margin: 4px;
+    height: 70px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.footer > .hour > .temp {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.footer > .hour.today {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid white;
+}
+
+.footer > .hour:hover {
+    transform: translateY(10px);
+}

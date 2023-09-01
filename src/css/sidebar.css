@@ -1,0 +1,110 @@
+.details > .sidebar {
+    grid-column: 2 / 3;
+    grid-row: 1 / -1;
+    padding: 32px;
+    color: white;
+}
+
+.sidebar > .search {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    height: 50px;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.search > .icon {
+    height: 100%;
+    width: 30px;
+    background-image: url("../assets/icons/map-marker.svg");
+    background-repeat: no-repeat;
+}
+
+.search > input {
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+    padding: 0 8px;
+    border: none;
+    font-size: 20px;
+    color: white;
+}
+
+.search > input:focus {
+    outline: none;
+}
+
+.sidebar > .temp {
+    font-size: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+.sidebar > .wind {
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    margin: 16px 0;
+    height: 20px;
+}
+
+.sidebar > .wind > .icon {
+    background-image: url("../assets/images/wind.png");
+    background-position: center;
+    background-size: contain;
+    height: 100%;
+    width: 20px;
+}
+
+.sidebar > .hr {
+    width: 100%;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.6);
+    margin: 10px 0;
+}
+
+.sidebar > .title {
+    font-weight: 700;
+    font-size: 32px;
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 20px;
+}
+
+.sidebar > .day {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    height: 70px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.sidebar > .day > .icon {
+    grid-column: 1 / 2;
+    grid-row: 1 / -1;
+    height: 100%; 
+    width: 90%;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.3);
+    padding: 16px;
+}
+
+.sidebar > .day .image {
+    height: 100%;
+    width: 100%;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.sidebar > .day > .date {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    align-self: end;
+    font-weight: 700;
+}

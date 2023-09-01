@@ -1,0 +1,39 @@
+.details > .header {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    display: flex;
+    justify-content: space-between;
+}
+
+.details .back {
+    background-image: url("../assets/images/back.png");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    align-self: center;
+    height: 60%;
+    width: 10%;
+    transition: transform 0.3s;
+    cursor: pointer;
+}
+
+.details .back:hover {
+    transform: scale(1.1);
+}
+
+.details .divider {
+    background-color: white;
+    width: 1px;
+    height: 30%
+}
+
+.details .datetime {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-right: 32px;
+    width: 200px;
+    font-weight: 700;
+    font-size: 18px;
+    color: white;
+}

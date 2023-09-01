@@ -1,27 +1,27 @@
-div.main > .temp > .atmosphere {
+.atmosphere {
     background-image: url('../assets/images/atmosphere.png');
 }
 
-div.main > .temp > .thunderstorm {
+.thunderstorm {
     background-image: url('../assets/images/thunderstorm.png');
 }
 
-div.main > .temp > .drizzle {
+.drizzle {
     background-image: url('../assets/images/drizzle.png');
 }
 
-div.main > .temp > .rain {
+.rain {
     background-image: url('../assets/images/rain.png');
 }
 
-div.main > .temp > .snow {
+.snow {
     background-image: url('../assets/images/snow.png');
 }
 
-div.main > .temp > .clear {
+.clear {
     background-image: url('../assets/images/clear.png');
 }
 
-div.main > .temp > .cloud {
+.cloud {
     background-image: url('../assets/images/cloud.png');
 }
