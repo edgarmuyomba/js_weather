@@ -1,0 +1,32 @@
+{
+  "name": "weather_app",
+  "version": "1.0.0",
+  "description": "A simple application used to display weather information written in javascript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "start": "webpack serve --open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/edgarmuyomba/js_weather.git"
+  },
+  "keywords": [
+    "weather",
+    "api"
+  ],
+  "author": "Edgar Matthew <edgarmatthew247@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/edgarmuyomba/js_weather/issues"
+  },
+  "homepage": "https://github.com/edgarmuyomba/js_weather#readme",
+  "devDependencies": {
+    "css-loader": "^6.8.1",
+    "style-loader": "^3.3.3",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1"
+  }
+}
