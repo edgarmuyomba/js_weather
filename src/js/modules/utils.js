@@ -1,5 +1,6 @@
 import { displayDetails } from "./details";
 import { displayToday } from "./today";
+import { format } from "date-fns";
 
 async function fetchDetails(city) {
         var response = await fetch(
@@ -33,6 +34,7 @@ async function getfiveDays(city) {
 
     let data = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${details['lat']}&lon=${details['lon']}&appid=${details['appid']}`);
     let response = await data.json();
+    console.log(response);
     return response;
 }
 
@@ -90,4 +92,23 @@ function setIcon(element, main) {
     element.classList.add(styles[main]);
 }
 
-export { fetchDetails, kelvinToDegrees, capitalize, showDetails, showToday, fetchToday, setIcon, getfiveDays };
+function getHighlight() {
+    const time = format(Date.now(), "H:mm");
+    let [hour, min] = time.split(":");
+    (hour = parseInt(hour)), (min = parseInt(min));
+
+    if (hour % 3 === 0 && min === 0) {
+        return time;
+    } else {
+        // not exact, look for next
+        hour++;
+        if (hour === 24) hour = 0;
+        while (hour % 3 !== 0) {
+            hour++;
+            if (hour === 24) hour = 0;
+        }
+        return `${hour}:00`;
+    }
+}
+
+export { fetchDetails, kelvinToDegrees, capitalize, showDetails, showToday, fetchToday, setIcon, getfiveDays, getHighlight };

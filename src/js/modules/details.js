@@ -1,4 +1,4 @@
-import { showToday, fetchToday, setIcon, getfiveDays, kelvinToDegrees } from "./utils";
+import { showToday, fetchToday, setIcon, getfiveDays, kelvinToDegrees, getHighlight } from "./utils";
 import { format } from "date-fns";
 
 const back = document.querySelector('.header > .back');
@@ -45,7 +45,11 @@ async function setDetails() {
 function setHours(fiveDays) {
     const footer = document.querySelector('.details > .footer');
 
+    footer.innerHTML = '';
+
     let hourly = fiveDays["list"].slice(0, 8);
+
+    let highlight = getHighlight();
 
     hourly.forEach((hour) => {
         let time = new Date(hour['dt'] * 1000);
@@ -54,7 +58,9 @@ function setHours(fiveDays) {
             "main": hour['weather'][0]['main'],
             "temp": hour['main']['temp'],
         };
-        footer.appendChild(createHour(det));
+        let newHour = createHour(det);
+        if (highlight === det['time']) newHour.classList.add('today');
+        footer.appendChild(newHour);
     })
     
 }
@@ -79,7 +85,7 @@ function createHour(det) {
     image.classList.add('image');
     setIcon(image, det['main']);
     icon.appendChild(image);
-    
+
     hour.appendChild(icon);
 
     const temp = document.createElement('div');
