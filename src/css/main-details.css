@@ -17,13 +17,31 @@
     margin-left: 32px;
 }
 
-.main-details > .desc {
+.main-details > .description {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: end;
+    gap: 80px;
+}
+
+.main-details .desc {
     height: 40%;
     width: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: end;
     align-items: end;
     font-size: 200px;
     color: rgba(255, 255, 255, 0.7);
     padding-right: 32px;
+}
+
+.main-details > .description > .location {
+    width: 30%;
+    text-align: end;
+    padding-right: 40px;
+    font-size: 25px;
+    color: white;
+    font-weight: 700;
 }

@@ -3,7 +3,7 @@ import { format } from "date-fns";
 
 const back = document.querySelector('.header > .back');
 
-let currentCity = "";
+let currentCity = "Kampala";
 
 async function displayDetails(city) {
     currentCity = city;
@@ -45,9 +45,11 @@ async function setDetails() {
         // handle error
         handleError();
     } else {
-
-        const desc = document.querySelector('.main-details > .desc');
+        const desc = document.querySelector('.main-details .desc');
         desc.textContent = today['description'];
+
+        const name = document.querySelector('.main-details .location');
+        name.textContent = today['name'];
 
         const temp = document.querySelector('.details > .sidebar > .temp');
         temp.textContent = `${today['temp']}°C`;
