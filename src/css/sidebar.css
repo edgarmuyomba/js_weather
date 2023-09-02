@@ -77,7 +77,7 @@
     margin-bottom: 20px;
 }
 
-.sidebar > .day {
+.sidebar .day {
     display: grid;
     grid-template-columns: 1fr 3fr 1fr;
     grid-template-rows: 1fr 1fr;
@@ -86,7 +86,7 @@
     margin-bottom: 32px;
 }
 
-.sidebar > .day > .icon {
+.sidebar .day > .icon {
     grid-column: 1 / 2;
     grid-row: 1 / -1;
     height: 100%; 
@@ -97,7 +97,7 @@
     padding: 16px;
 }
 
-.sidebar > .day .image {
+.sidebar .day .image {
     height: 100%;
     width: 100%;
     background-position: center;
@@ -105,14 +105,14 @@
     background-repeat: no-repeat;
 }
 
-.sidebar > .day > .date {
+.sidebar .day > .date {
     grid-column: 2 / 3;
     grid-row: 1 / 2;
     align-self: end;
     font-weight: 700;
 }
 
-.sidebar > .day > .desc {
+.sidebar .day > .desc {
     grid-column: 2 / 3;
     grid-row: 2 / 3;
 }

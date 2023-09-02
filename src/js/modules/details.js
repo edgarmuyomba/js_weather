@@ -12,7 +12,7 @@ async function displayDetails(city) {
 
     let fiveDays = await getfiveDays(currentCity);
     setHours(fiveDays);
-    // setDays();
+    setDays(fiveDays);
 }
 
 function setDateTime() {
@@ -62,7 +62,7 @@ function setHours(fiveDays) {
         if (highlight === det['time']) newHour.classList.add('today');
         footer.appendChild(newHour);
     })
-    
+
 }
 
 function createHour(det) {
@@ -80,7 +80,7 @@ function createHour(det) {
 
     const icon = document.createElement('div');
     icon.classList.add('icon');
-    
+
     const image = document.createElement('div');
     image.classList.add('image');
     setIcon(image, det['main']);
@@ -94,6 +94,61 @@ function createHour(det) {
     hour.appendChild(temp);
 
     return hour;
+}
+
+function setDays(fiveDays) {
+
+    let days = document.querySelector('.details > .sidebar > .days');
+
+    days.innerHTML = '';
+
+    let hours = fiveDays['list'];
+
+    hours.forEach((hour) => {
+        let datetime = new Date(hour['dt'] * 1000);
+        let time = format(datetime, "H:mm");
+        if (time === '6:00') {
+            let det = {
+                "date": format(datetime, "EEEE d, MMMM"),
+                "temp": hour['main']['temp'],
+                "main": hour['weather'][0]['main'],
+                "desc": hour['weather'][0]['description'],
+            };
+            days.appendChild(createDay(det));
+        }
+    })
+}
+
+function createDay(det) {
+    let day = document.createElement('div');
+    day.classList.add('day');
+
+    let icon = document.createElement('div');
+    icon.classList.add('icon');
+
+    let image = document.createElement('div');
+    image.classList.add('image');
+    setIcon(image, det['main']);
+    icon.appendChild(image);
+
+    day.appendChild(icon);
+
+    let date = document.createElement('div');
+    date.classList.add('date');
+    date.textContent = det['date'];
+    day.appendChild(date);
+
+    let desc = document.createElement('div');
+    desc.classList.add('desc');
+    desc.textContent = det['desc'];
+    day.appendChild(desc);
+
+    let temp = document.createElement('div');
+    temp.classList.add('temp');
+    temp.textContent = `${kelvinToDegrees(det['temp'])}°C`;
+    day.appendChild(temp);
+
+    return day;
 }
 
 
