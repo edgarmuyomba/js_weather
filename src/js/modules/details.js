@@ -1,18 +1,30 @@
-import { showToday, fetchToday, setIcon, getfiveDays, kelvinToDegrees, getHighlight } from "./utils";
+import { showToday, fetchToday, setIcon, getfiveDays, kelvinToDegrees, getHighlight, handleError } from "./utils";
 import { format } from "date-fns";
 
 const back = document.querySelector('.header > .back');
 
-let currentCity = "Kampala";
+let currentCity = "";
 
 async function displayDetails(city) {
     currentCity = city;
+    setSearchValue();
     setDateTime();
     setDetails();
 
     let fiveDays = await getfiveDays(currentCity);
-    setHours(fiveDays);
-    setDays(fiveDays);
+    if (fiveDays['error']) {
+        // handle error
+        handleError();
+    } else {
+        setHours(fiveDays);
+        setDays(fiveDays);
+    }
+}
+
+function setSearchValue() {
+    const search = document.querySelector('.sidebar > .search input');
+
+    search.value = currentCity;
 }
 
 function setDateTime() {
@@ -29,17 +41,23 @@ function setDateTime() {
 async function setDetails() {
     let today = await fetchToday(currentCity);
 
-    const desc = document.querySelector('.main-details > .desc');
-    desc.textContent = today['description'];
+    if (today['error']) {
+        // handle error
+        handleError();
+    } else {
 
-    const temp = document.querySelector('.details > .sidebar > .temp');
-    temp.textContent = `${today['temp']}°C`;
+        const desc = document.querySelector('.main-details > .desc');
+        desc.textContent = today['description'];
 
-    const wind = document.querySelector('.details > .sidebar .speed');
-    wind.textContent = `${today['wind']} ms`;
+        const temp = document.querySelector('.details > .sidebar > .temp');
+        temp.textContent = `${today['temp']}°C`;
 
-    const icon = document.querySelector('.main-details > .icon');
-    setIcon(icon, today['main']);
+        const wind = document.querySelector('.details > .sidebar .speed');
+        wind.textContent = `${today['wind']} ms`;
+
+        const icon = document.querySelector('.main-details > .icon');
+        setIcon(icon, today['main']);
+    }
 }
 
 function setHours(fiveDays) {

@@ -3,39 +3,56 @@ import { displayToday } from "./today";
 import { format } from "date-fns";
 
 async function fetchDetails(city) {
+    try {
         var response = await fetch(
             `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=047f8110fe6519e1f7ed701d95b7bbd0`
         );
         var details = await response.json();
-    return {
-        lat: details[0]["lat"],
-        lon: details[0]["lon"],
-        name: `${details[0]["name"]}, ${details[0]["country"]}`,
-        appid: "047f8110fe6519e1f7ed701d95b7bbd0",
-    };
+        return {
+            lat: details[0]["lat"],
+            lon: details[0]["lon"],
+            name: `${details[0]["name"]}, ${details[0]["country"]}`,
+            appid: "047f8110fe6519e1f7ed701d95b7bbd0",
+        };
+    } catch (error) {
+        return {
+            "error": "Error! Check your internet connection or the location you have entered"
+        };
+    }
 }
 
 async function fetchToday(city) {
-    let details = await fetchDetails(city);
-    
-    let data = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${details['lat']}&lon=${details['lon']}&appid=${details['appid']}`);
-    let response = await data.json();
-    return {
-        "main": response['weather'][0]['main'],
-        "name": details['name'],
-        "description": capitalize(response['weather'][0]['description']),
-        "temp": kelvinToDegrees(response['main']['temp']),
-        "wind": response['wind']['speed'],
+    try {
+        let details = await fetchDetails(city);
+
+        let data = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${details['lat']}&lon=${details['lon']}&appid=${details['appid']}`);
+        let response = await data.json();
+        return {
+            "main": response['weather'][0]['main'],
+            "name": details['name'],
+            "description": capitalize(response['weather'][0]['description']),
+            "temp": kelvinToDegrees(response['main']['temp']),
+            "wind": response['wind']['speed'],
+        }
+    } catch (error) {
+        return {
+            "error": "Error! Check your internet connection or the location you have entered"
+        };
     }
 }
 
 async function getfiveDays(city) {
-    let details = await fetchDetails(city);
+    try {
+        let details = await fetchDetails(city);
 
-    let data = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${details['lat']}&lon=${details['lon']}&appid=${details['appid']}`);
-    let response = await data.json();
-    console.log(response);
-    return response;
+        let data = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${details['lat']}&lon=${details['lon']}&appid=${details['appid']}`);
+        let response = await data.json();
+        return response;
+    } catch (error) {
+        return {
+            "error": "Error! Check your internet connection or the location you have entered"
+        };
+    }
 }
 
 function kelvinToDegrees(value, format = "celsius") {
@@ -111,4 +128,14 @@ function getHighlight() {
     }
 }
 
-export { fetchDetails, kelvinToDegrees, capitalize, showDetails, showToday, fetchToday, setIcon, getfiveDays, getHighlight };
+function handleError() {
+    const error = document.querySelector('.error');
+
+    error.removeAttribute('style');
+
+    setTimeout(() => {
+        error.setAttribute('style', 'display: none');
+    }, 5000);
+}
+
+export { fetchDetails, kelvinToDegrees, capitalize, showDetails, showToday, fetchToday, setIcon, getfiveDays, getHighlight, handleError };
