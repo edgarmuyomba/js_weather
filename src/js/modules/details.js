@@ -3,7 +3,7 @@ import { format } from "date-fns";
 
 const back = document.querySelector('.header > .back');
 
-let currentCity = "Kampala";
+let currentCity = "";
 
 async function displayDetails(city) {
     currentCity = city;

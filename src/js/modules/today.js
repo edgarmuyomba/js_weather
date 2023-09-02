@@ -8,6 +8,8 @@ window.onload = displayToday(currentCity);
 
 
 async function displayToday(city) {
+    currentCity = city;
+    
     let today = await fetchToday(city);
 
     if (today['error']) {
