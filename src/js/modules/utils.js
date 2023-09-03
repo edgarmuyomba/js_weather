@@ -5,7 +5,10 @@ import { format } from "date-fns";
 async function fetchDetails(city) {
     try {
         var response = await fetch(
-            `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=047f8110fe6519e1f7ed701d95b7bbd0`
+            `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=047f8110fe6519e1f7ed701d95b7bbd0`,
+            {
+                mode: 'cors',
+            }
         );
         var details = await response.json();
         return {
@@ -25,7 +28,10 @@ async function fetchToday(city) {
     try {
         let details = await fetchDetails(city);
 
-        let data = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${details['lat']}&lon=${details['lon']}&appid=${details['appid']}`);
+        let data = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${details['lat']}&lon=${details['lon']}&appid=${details['appid']}`,
+            {
+                mode: 'cors',
+            });
         let response = await data.json();
         return {
             "main": response['weather'][0]['main'],
@@ -45,7 +51,10 @@ async function getfiveDays(city) {
     try {
         let details = await fetchDetails(city);
 
-        let data = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${details['lat']}&lon=${details['lon']}&appid=${details['appid']}`);
+        let data = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${details['lat']}&lon=${details['lon']}&appid=${details['appid']}`,
+            {
+                mode: 'cors',
+            });
         let response = await data.json();
         return response;
     } catch (error) {
